@@ -1,0 +1,57 @@
+﻿@using OnlineShop.Models
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    // khởi tạo control webgrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+@Html.ActionLink("Thêm Sản Phẩm", "TaoMoi", null, new {@class ="btn btn-success"})
+<br /><br />
+@* the hien du lieu thong *@
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridBow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+       grid.Column("MaSp", "Item Id"),
+       grid.Column("TenSp", "Name"),
+       grid.Column("HinhAnh", "Image",format: p=> Html.Raw("<img src=" +p.HinhAnh +">"  )),
+       grid.Column("CauHinh", "Config",format: p=> Html.Raw(p.CauHinh)),
+       grid.Column(format: p=> Html.ActionLink("Chỉnh Sửa","ChinhSua",new {id =p.MaSp })),
+       grid.Column(format: p=> Html.ActionLink("Xóa","Xoa", new { id = p.MaSp }))))
+
+<style>
+    .gridTable{
+        border: 3px solid #999999;
+    }
+    .gridTable  td{
+        border: 1px solid #999999;
+        text-align:center;
+    }
+    .gridHead{
+        background-color: greenyellow;
+    }
+    .gridHead > th{
+        min-width: 50px;
+    }
+    .gridHead > th > a{
+        color:#190707;
+    }
+    img{
+        max-width:300px;
+    }
+    .gridFooter{
+        font-weight: bold;
+    }
+    .gridBow {
+        color: #fff;
+        background-color:burlywood;
+    }
+    .gridAltRow{
+        color:#fff;
+        background-color:tomato;
+    }
+</style>

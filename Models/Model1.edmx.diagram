@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f94aebf08b2e4285a0e7f570e818b450" Name="Diagram1">
+        <EntityTypeShape EntityType="DataBanHangModel.HoaDon" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBanHangModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBanHangModel.NhaSanXuat" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBanHangModel.QuangCao" Width="1.5" PointX="5.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBanHangModel.SanPham" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBanHangModel.ThanhVien" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="DataBanHangModel.fk_MaLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBanHangModel.fk_MaNSX" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBanHangModel.FK_HoaDon" />
+        <EntityTypeShape EntityType="DataBanHangModel.ChiTietHoaDon" Width="1.5" PointX="8" PointY="2.25" />
+        <AssociationConnector Association="DataBanHangModel.FK_ChitietHoaDon" />
+        <EntityTypeShape EntityType="DataBanHangModel.LoaiThanhVien" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="DataBanHangModel.LoaiThanhVien_Quyen" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="DataBanHangModel.Quyen" Width="1.5" PointX="3" PointY="14.375" />
+        <AssociationConnector Association="DataBanHangModel.FK_LoaiThanhVien_Quyen_LoaiThanhVien" />
+        <AssociationConnector Association="DataBanHangModel.FK_ThanhVien_LoaiThanhVien" />
+        <AssociationConnector Association="DataBanHangModel.FK_LoaiThanhVien_Quyen_Quyen" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,105 @@
+﻿@using OnlineShop.Models
+@model IEnumerable<SanPham>
+@foreach (var item in Model.Take(1))
+{
+    <div class="col-md-5 single-top">
+        <div class="flexslider">
+            <ul class="slides">
+
+                <li data-thumb="@item.HinhAnh1">
+                    <img src="@item.HinhAnh1" alt="hình ảnh 1"/>
+                </li>
+                <li data-thumb="@item.HinhAnh2">
+                    <img src="@item.HinhAnh2" alt="hình ảnh 2"/>
+                </li>
+                <li data-thumb="@item.HinhAnh3">
+                    <img src="@item.HinhAnh3" alt="hình ảnh 3"/>
+                </li>
+                <li data-thumb="@item.HinhAnh4">
+                    <img src="@item.HinhAnh4" alt="hình ảnh 4"/>
+                </li>
+            </ul>
+        </div>
+        <!--FlexSlider-->
+        <script defer src="~/Assets/MainPage/js/jquery.flexslider.js"></script>
+        <link rel="stylesheet" href="~/Assets/MainPage/css/flexslider.css" type="text/css" media="screen" />
+
+        <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                })
+            })
+        </script>
+
+    </div>
+    <div class="col-md-7 single-top-in simpleCart_shelfItem">
+        <div class="single-para ">
+            <h4>@item.TenSp</h4>
+            <div class="star-on">
+                <ul class="star-footer">
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                </ul>
+                <div class="review">
+                    <a href="#"> 1 customer review </a>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+            <h5 class="item_price">@item.DonGia.Value.ToString("#,##") đ</h5>
+            <p>
+                @Html.Raw(item.CauHinh)
+            </p>
+            <div class="available">
+                @*<ul>
+                        <li>
+                            Color
+                            <select>
+                                <option>Silver</option>
+                                <option>Black</option>
+                                <option>Dark Black</option>
+                                <option>Red</option>
+                            </select>
+                        </li>
+                        <li class="size-in">
+                            Size<select>
+                                <option>Large</option>
+                                <option>Medium</option>
+                                <option>small</option>
+                                <option>Large</option>
+                                <option>small</option>
+                            </select>
+                        </li>
+                        <div class="clearfix"> </div>
+                    </ul>*@
+            </div>
+            <ul class="tag-men">
+                <li>
+                    <span>TAG</span>
+                    <span class="women1">: Phone,</span>
+                </li>
+                <li>
+                    <span>SKU</span>
+                    <span class="women1">: Samsung</span>
+                </li>
+            </ul>
+            <div>
+                <a href="@Url.Action("ThemGioHang","GioHang",new { @MaSP = item.MaSp, @strURL = Request.Url.ToString()})" class="add-cart item_add">ADD TO CART</a>
+            </div>
+            <br />
+            <div class="fb-share-button" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <h3>Thông Tin Sản Phẩm</h3>
+    @Html.Raw(item.MoTa)
+}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="CyGoX8Sc"></script>

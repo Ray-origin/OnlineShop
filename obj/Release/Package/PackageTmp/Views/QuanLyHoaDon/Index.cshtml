@@ -1,0 +1,74 @@
+﻿
+@using OnlineShop.Models
+@model IEnumerable<HoaDon>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    // khởi tạo control webgrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+@*@Html.ActionLink("Thêm Sản Phẩm", "TaoMoi", null, new { @class = "btn btn-success" })*@
+<br />
+<br />
+@* the hien du lieu thong *@
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridBow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+       grid.Column("MaHD", "Mã HĐ"),
+       grid.Column("NgayXuat", "Ngày xuất"),
+       grid.Column("MaTV","Mã TV") ,
+       grid.Column("DaThanhToan", "Tình trạng thanh toán"),
+       grid.Column(format: p => Html.ActionLink("Xem chi tiết", "Xem", new { id = p.MaHD ,@style="color:white"}))))
+
+<style>
+    .gridTable {
+        border: solid 3px #DDEEEE;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font: normal 16px Arial, sans-serif
+    }
+
+        .gridTable td {
+            border: solid 3px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+            text-align: center;
+        }
+
+    .gridHead {
+        background-color:lightskyblue;
+    }
+
+        .gridHead > th {
+            min-width: 50px;
+            text-align:center;
+        }
+
+            .gridHead > th > a {
+                color: #190707;                
+            }
+
+    img {
+        max-width: 300px;
+    }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+    .gridBow {
+        color: #fff;
+        /*background-color:deepskyblue*/
+    }
+
+    .gridAltRow {
+        color: #fff;
+        /*background-color:cyan;*/
+    }
+</style>
+

@@ -1,0 +1,83 @@
+﻿@using OnlineShop.Models
+@model IEnumerable<ThanhVien>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    // khởi tạo control webgrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+@*@Html.ActionLink("Xuất file Excel", "XuatExcel", null, new { @class = "btn btn-success" })*@
+<br />
+<br />
+@* the hien du lieu thong *@
+@grid.GetHtml(
+    htmlAttributes: new {id = "DataTV"},
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridBow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+       grid.Column("Email", "Email"),
+       grid.Column("HoTen", "First Name"),
+       grid.Column("MaTV", "User Id"),              
+       grid.Column(format: p => Html.ActionLink("Chỉnh Sửa", "ChinhSua", new { id = p.MaTV })),
+       grid.Column(format: p => Html.ActionLink("Xóa", "Xoa", new { id = p.MaTV }))))
+
+<style>
+    .gridTable {
+        border: 3px solid #999999;
+    }
+
+        .gridTable td {
+            border: 1px solid #999999;
+            min-width:180px;
+        }
+
+    .gridHead {
+        background-color: greenyellow;
+    }
+
+        .gridHead > th {
+            min-width: 50px;
+        }
+
+            .gridHead > th > a {
+                color: #190707;
+            }
+
+    img {
+        max-width: 300px;
+    }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+        .gridBow {
+        /*color: #fff;
+        background-color: burlywood;*/
+        width:50px;
+        height:50px;
+    }
+
+    .gridAltRow {
+        /*color: #fff;
+        background-color: tomato;*/
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DataTV').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>

@@ -1,0 +1,25 @@
+﻿@using OnlineShop.Models;
+@model IEnumerable<SanPham>
+
+<div class="content-top">
+    <h1>@Model.First().LoaiSanPham.TenLoai Mới Nhất</h1>
+    <div class="grid-in">
+        @foreach(var item in Model.Take(3)){
+        <div class="col-md-4 grid-top">
+            @*<a href="@Url.Action("ChiTietSP","SanPham", new { @id = item.MaSp,@tenSP = item.TenSp })" class="b-link-stripe b-animate-go  thickbox">*@
+            <a href="@Url.RouteUrl("ChiTietSP", new { @id = item.MaSp,@tenUrl = item.UrlName })" class="b-link-stripe b-animate-go  thickbox">
+            <img class="img-responsive" src="@item.HinhAnh" alt="">
+            <div class="b-wrapper">
+                <h3 class="b-animate b-from-left    b-delay03 " style="text-align:left;font-size:15px">
+                    <span style="text-align:left;position:absolute;top:1%;left:1%;font-size:22px">@Html.Raw(item.CauHinh)</span>
+                </h3>
+            </div>
+            </a>
+
+
+            <p><a href="single.html">@item.TenSp</a></p>
+        </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>

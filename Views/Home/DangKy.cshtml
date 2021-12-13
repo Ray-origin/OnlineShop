@@ -1,0 +1,60 @@
+﻿@using OnlineShop.Models
+@model ThanhVien
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    string thongbao = (string)ViewBag.thongbao;
+}
+<div class=" container">
+    <div class=" register">
+        <h1>Register</h1>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-6 register-top-grid">
+                <h3>Thông Tin Cá Nhân</h3>
+                <div>
+                    <span>Tài Khoản</span>
+                    @Html.TextBoxFor(model => model.TaiKhoan)
+                    @Html.ValidationMessageFor(model => model.TaiKhoan)
+                </div>
+                <div>
+                    <span>Họ Tên</span>
+                    @Html.TextBoxFor(model => model.HoTen)
+                    @Html.ValidationMessageFor(model => model.HoTen)
+
+                </div>
+                <div>
+                    <span>Email</span>
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                @*<a class="news-letter" href="#">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+                    </a>*@
+            </div>
+            <div class="col-md-6 register-bottom-grid">
+                <h3>Thông Tin Đăng Nhập</h3>
+                <br />
+                <div>
+                    <span>Mật Khẩu</span>
+                    @Html.PasswordFor(model => model.MatKhau)
+                    @Html.ValidationMessageFor(model => model.MatKhau)
+                </div>
+                <div>
+                    <span>Nhập lại mật khẩu</span>
+                    @Html.Password("NhapLaiMatKhau")
+                </div>
+                <br />
+                <input type="submit" value="submit ">
+                <h2>@thongbao</h2>
+            </div>
+            <div class="clearfix"> </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@using OnlineShop.Models
+@{ 
+    string userName = (string)ViewBag.userName;
+}
+<div class="header-top">
+    <div class="container">
+        <div class="search">
+            @* tao form submit về action tim kiem*@
+            @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+            {
+                <input name="sTuKhoa" type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                <input type="submit" value="Go">
+            }
+        </div>
+        <div class="header-left">
+            <ul>
+                @*@if (Session["TaiKhoan"] != null)*@
+                @if (Context.User.Identity.Name != "")
+                {
+                    string tenthanhvien = (string)Context.User.Identity.Name;
+                    //ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                    <li id="helloText"><a>Chào @tenthanhvien </a></li>
+                    <li><a href="@Url.Action("Index","QuanLySanPham")">Quản lí</a></li>
+                    <li><a href="@Url.Action("DangXuat", "Home")">Đăng Xuất</a></li>
+                    @*@Html.ActionLink("Đăng Xuất", "DangXuat", "Home")*@
+                }
+                else
+                {
+                    <li><a href="@Url.Action("DangNhap", "Home")">Đăng Nhập</a></li>
+                    <li><a href="@Url.Action("DangKy", "Home")">Đăng ký</a></li>
+                }
+            </ul>
+            @Html.Action("GioHangPartial", "GioHang")
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<style>
+    #helloText{
+        color:white;
+        font-size:20px;
+    }
+</style>

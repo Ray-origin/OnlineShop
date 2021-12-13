@@ -1,0 +1,32 @@
+﻿@using OnlineShop.Models
+@using PagedList.Mvc
+@model  PagedList.IPagedList<SanPham>
+@{
+    ViewBag.Title = "KQTimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-9 product1" style="width:100%">
+    <div class=" bottom-product">
+        @foreach (var item in Model.OrderBy(n => n.DonGia))
+        {
+            <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                <div class="product-at ">
+                    <a href="@Url.Action("ChiTietSP", "SanPham", new { @id = item.MaSp })">
+                        <img class="img-responsive" src="@item.HinhAnh" alt="" style="width:300px;height:300px">
+                        <div class="pro-grid">
+                            <span class="buy-in">BUY NOW</span>
+                        </div>
+                    </a>
+                </div>
+                <p class="tun">@item.TenSp</p>
+                <a href="@Url.Action("ThemGioHang","GioHang",new { @MaSP = item.MaSp, @strURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.DonGia.Value.ToString("#,##") đ</p></a>
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="dlink">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("KQTimKiem", new { page = page, @sTuKhoa = ViewBag.TuKhoa }))
+</div>

@@ -1,0 +1,17 @@
+﻿@using OnlineShop.Models
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "ChiTietSP";
+    Layout = "~/Views/Shared/CTSP_Layout.cshtml";
+}
+@section metatags{
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:type" content="Sales" />
+    <meta property="og:title" content=@Model.First().TenSp />
+    <meta property="og:description" content="@Model.First().MoTa" />
+    <link rel="canonical" href="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:image" content="@Model.First().HinhAnh" />
+    <!--canonical-->>
+}
+@Html.Partial("~/Views/SanPham/SanPhamStyle2Partial.cshtml")
+
